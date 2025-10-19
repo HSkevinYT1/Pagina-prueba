@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad UNAB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2b5a9e 0%, #1e3a5f 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            background: #f9a825;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 3px solid #f9a825;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .logo-text span:first-child {
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .logo-text span:last-child {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f9a825;
+            line-height: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .perfil-btn {
+            background: white;
+            color: #2b5a9e;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .user-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #2b5a9e;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .left-section h1 {
+            font-size: 64px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .placeholder-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+
+        .placeholder-line {
+            height: 12px;
+            background: #d0d0d0;
+            border-radius: 6px;
+        }
+
+        .placeholder-line:first-child {
+            width: 380px;
+        }
+
+        .placeholder-line:last-child {
+            width: 280px;
+        }
+
+        .auth-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: #f9a825;
+            border-bottom-color: #f9a825;
+        }
+
+        .tab:hover {
+            color: #f9a825;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-placeholder {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .avatar-placeholder {
+            width: 60px;
+            height: 60px;
+            background: #c4d4e8;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .avatar-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .avatar-placeholder::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 25px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .profile-text {
+            flex: 1;
+            height: 12px;
+            background: #d0d0d0;
+            border-radius: 6px;
+            width: 150px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fafafa;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #f9a825;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #f9a825;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #f57f17;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: #5c6bc0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .right-section.hidden {
+            display: none;
+        }
+
+        .welcome-message {
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .welcome-message h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .welcome-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .progress-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .progress-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .progress-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f9a825 0%, #ffc107 100%);
+            width: 83%;
+            border-radius: 5px;
+        }
+
+        .hours-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .hours-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .option-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .option-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-image {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .option-item:nth-child(1) .option-image {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), #8b7355;
+        }
+
+        .option-item:nth-child(2) .option-image {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), #6a1b9a;
+        }
+
+        .option-item:nth-child(3) .option-image {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), #95a5a6;
+        }
+
+        .option-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .ver-lugares {
+            color: #5c6bc0;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        footer {
+            background: white;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+            </div>
+            <div class="logo-text">
+                <span>Universidad</span>
+                <span>unab</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="perfil-btn">Perfil</button>
+            <div class="user-icon">👤</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="left-section">
+            <h1>Hola, Bienvenido</h1>
+            <div class="placeholder-lines">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line"></div>
+            </div>
+
+            <div class="auth-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('login')">Iniciar Sesión</button>
+                    <button class="tab" onclick="switchTab('register')">Registrarse</button>
+                </div>
+
+                <div id="login" class="tab-content active">
+            
+                    <div class="input-group">
+                        <label>ID de estudiante</label>
+                        <input type="text" placeholder="Ingresa tu ID">
+                    </div>
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="Ingresa tu contraseña">
+                    </div>
+                    <button class="btn" onclick="login()">Iniciar Sesión</button>
+                    <div class="forgot-password">
+                        <a href="#">¿Olvidaste tu contraseña?</a>
+                    </div>
+                </div>
+
+                <div id="register" class="tab-content">
+                    <div class="input-group">
+                        <label>Nombre completo</label>
+                        <input type="text" placeholder="Ingresa tu nombre completo">
+                    </div>
+                    <div class="input-group">
+                        <label>ID de estudiante</label>
+                        <input type="text" placeholder="Ingresa tu ID">
+                    </div>
+                    <div class="input-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" placeholder="correo@unab.edu.co">
+                    </div>
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="Crea una contraseña">
+                    </div>
+                    <div class="input-group">
+                        <label>Confirmar contraseña</label>
+                        <input type="password" placeholder="Confirma tu contraseña">
+                    </div>
+                    <button class="btn">Registrar Usuario</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section hidden" id="userContent">
+            <div class="progress-card">
+                <h4>Progreso de horas libres</h4>
+                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">Horas Libres obtenidas</span></div>
+                <p class="progress-text">Te faltan <strong>20 horas libres</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="hours-card">
+                <h3>Donde obtener horas libres?</h3>
+                <div class="options-grid">
+                    <div class="option-item">
+                        <div class="option-image"></div>
+                        <div class="option-label">Lugares</div>
+                    </div>
+                    <div class="option-item">
+                        <div class="option-image"></div>
+                        <div class="option-label">Eventos</div>
+                    </div>
+                    <div class="option-item">
+                        <div class="option-image"></div>
+                        <div class="option-label">Actividades</div>
+                    </div>
+                </div>
+                <a href="#" class="ver-lugares">Ver lugares disponibles</a>
+            </div>
+        </div>
+
+        <div class="welcome-message" id="welcomeMessage">
+            <div class="welcome-icon">🎓</div>
+            <h2>Bienvenido a UNAB</h2>
+            <p>Inicia sesión o regístrate para acceder a tu información de horas libres, eventos y actividades disponibles.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Universidad Autonoma de Bucaramanga</p>
+        <div class="footer-links">
+            <a href="#">Acerca de</a>
+            <a href="#">Contacto</a>
+            <a href="#">soporte</a>
+        </div>
+    </footer>
+
+    <script>
+        let isLoggedIn = false;
+
+        function switchTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');           //ocultar contenido
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+        
+            const tabs = document.querySelectorAll('.tab');                      //desactivar todas las pestañas
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');            // activar la pestaña seleccionada
+            event.target.classList.add('active');
+        }
+
+        function login() {
+            isLoggedIn = true;                                                  //Simular login
+            
+            document.getElementById('welcomeMessage').style.display = 'none';   //ocultar mensaje de bienvenida UNAB
+            
+
+            const userContent = document.getElementById('userContent');         //mostrar el contenido del usuario
+            userContent.classList.remove('hidden');
+            
+            userContent.style.opacity = '0';                                     
+            setTimeout(() => {
+                userContent.style.transition = 'opacity 0.5s';
+                userContent.style.opacity = '1';
+            }, 10);
+        }
+    </script>
+</body>
+</html>
