@@ -1037,7 +1037,7 @@
                                                                                 
             <div class="user-menu">
                 <div class="user-button" onclick="toggleUserMenu()">    
-                    <span class="user-name-display" id="userNameDisplay">Juan Pérez</span>         <!-- User Menu -->
+                    <span class="user-name-display" id="userNameDisplay">Kevin Bayona</span>         <!-- User Menu -->
                     <div class="user-icon">👤</div>
                 </div>
 
@@ -1076,9 +1076,6 @@
                 </div>
 
                 <div id="login" class="tab-content active">
-                    <div class="profile-placeholder">
-                        <div class="profile-text"></div>
-                    </div>
                     <div class="input-group">
                         <label>ID de estudiante</label>
                         <input type="text" id="loginId" placeholder="Ingresa tu ID">
@@ -1127,9 +1124,9 @@
 
         <div class="right-section hidden" id="userContent">
             <div class="progress-card">
-                <h4>HL progreso</h4>
-                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">HL obtenidas</span></div>
-                <p class="progress-text">me faltan <strong>20</strong></p>
+                <h4>Horas libres progreso</h4>
+                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">Horas obtenidas</span></div>
+                <p class="progress-text">te faltan <strong>20</strong></p>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
@@ -1198,7 +1195,7 @@
             userContent.classList.remove('hidden');
             
             
-            const userName = document.getElementById('loginId').value || 'Juan Pérez'; 
+            const userName = document.getElementById('loginId').value || 'Kevin Bayona'; 
             document.getElementById('mainTitle').textContent = `Hola, ${userName}`;
             document.getElementById('userNameDisplay').textContent = userName;                      // Actualizar header
             document.getElementById('userNameDisplay').classList.add('active');
@@ -1207,7 +1204,7 @@
             document.getElementById('navMenu').style.display = 'flex';
             document.getElementById('searchContainer').style.display = 'block';                     // Mostrar elementos del header
             document.getElementById('notificationBell').style.display = 'block';
-            document.getElementById('quickAccess').style.display = 'block';
+            
             
             
             userContent.style.opacity = '0';
@@ -1235,7 +1232,6 @@
             document.getElementById('navMenu').style.display = 'none';
             document.getElementById('searchContainer').style.display = 'none';
             document.getElementById('notificationBell').style.display = 'none';                              // Ocultar elementos del header
-            document.getElementById('quickAccess').style.display = 'none';
             
             
             document.getElementById('userDropdown').classList.remove('active');                             // Cerrar dropdowns
@@ -1282,5 +1278,6 @@
             }
         });
     </script>
+
 
 
