@@ -14,6 +14,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -23,12 +26,26 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-unab {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .logo-unab:hover {
+            transform: scale(1.05);
         }
 
         .logo {
@@ -38,6 +55,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
@@ -59,6 +81,13 @@
             border-radius: 2px;
         }
 
+        .logo-image {
+            width: 40px;
+            height: 40px;                      /* Estilo para logo personalizado */
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
         .logo-text {
             display: flex;
             flex-direction: column;
@@ -77,10 +106,203 @@
             line-height: 0.9;
         }
 
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;                      /* Navigation Menu */
+            align-items: center;
+            margin-left: 80px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
         .header-right {
             display: flex;
             align-items: center;
             gap: 20px;
+        }
+
+        
+        .notification-bell {
+            position: relative;
+            cursor: pointer;                                 /* Notifications Bell */
+            color: white;
+            font-size: 24px;
+            padding: 8px;
+            transition: transform 0.3s;
+        }
+
+        .notification-bell:hover {
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        
+        .notification-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 50px;
+            background: white;                              /* Dropdown Notification Panel */
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 2000;
+            animation: slideDown 0.3s;
+        }
+
+        .notification-dropdown.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .notification-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .notification-item:hover {
+            background: #f9f9f9;
+        }
+
+        .notification-item.unread {
+            background: #e3f2fd;
+        }
+
+        .notification-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .notification-item-text {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .notification-item-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        
+        .search-container {
+            position: relative;                          /* Search Bar */
+        }
+
+        .search-input {
+            padding: 10px 40px 10px 15px;
+            border: none;
+            border-radius: 25px;
+            width: 250px;
+            font-size: 14px;
+            transition: width 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            width: 300px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+
+       
+        .user-menu {
+            position: relative;                            /* User Menu */
+        }
+
+        .user-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .user-button:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .user-name-display {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            display: none;
+        }
+
+        .user-name-display.active {
+            display: block;
         }
 
         .perfil-btn {
@@ -91,18 +313,67 @@
             font-weight: 600;
             border: none;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .perfil-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .user-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: #2b5a9e;
+        }
+
+        
+        .user-dropdown {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            width: 220px;
+            border-radius: 12px;                                      /* User Dropdown */
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 2000;
+            animation: slideDown 0.3s;
+        }
+
+        .user-dropdown.active {
+            display: block;
+        }
+
+        .user-dropdown-item {
+            padding: 15px 20px;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .user-dropdown-item:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+
+        .user-dropdown-item:last-child {
+            border-radius: 0 0 12px 12px;
+            border-bottom: none;
+            color: #f44336;
+        }
+
+        .user-dropdown-item:hover {
+            background: #f9f9f9;
         }
 
         .container {
@@ -471,6 +742,231 @@
             color: #666;
             text-decoration: none;
         }
+
+        
+        @media (max-width: 1024px) {
+            .container {                                   /* Responsive Design */
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 30px;
+            }
+
+            .left-section h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                position: relative;
+            }
+
+            .logo-unab {
+                height: 40px;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #2b5a9e 0%, #1e3a5f 100%);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+            }
+
+            .nav-menu a {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .header-right {
+                gap: 10px;
+            }
+
+            .search-container {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                padding: 15px 20px;
+                background: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .perfil-btn {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+
+            .user-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .user-name-display {
+                display: none !important;
+            }
+
+            .notification-bell {
+                font-size: 20px;
+            }
+
+            .notification-dropdown {
+                right: 10px;
+                left: 10px;
+                width: auto;
+            }
+
+            .user-dropdown {
+                right: 0;
+                width: 200px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                gap: 30px;
+            }
+
+            .left-section h1 {
+                font-size: 36px;
+            }
+
+            .placeholder-lines {
+                margin-bottom: 30px;
+            }
+
+            .placeholder-line:first-child {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .placeholder-line:last-child {
+                width: 80%;
+                max-width: 220px;
+            }
+
+            .auth-section {
+                padding: 25px;
+            }
+
+            .tab {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .welcome-message {
+                padding: 30px 20px;
+            }
+
+            .welcome-message h2 {
+                font-size: 24px;
+            }
+
+            .welcome-message p {
+                font-size: 16px;
+            }
+
+            .welcome-icon {
+                font-size: 60px;
+            }
+
+            .progress-card, .hours-card {
+                padding: 25px;
+            }
+
+            .progress-number {
+                font-size: 36px;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .option-image {
+                height: 120px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+
+            .quick-access {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .left-section h1 {
+                font-size: 28px;
+            }
+
+            .auth-section {
+                padding: 20px;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .progress-card h4 {
+                font-size: 16px;
+            }
+
+            .progress-number {
+                font-size: 32px;
+            }
+
+            .progress-number span {
+                font-size: 18px !important;
+            }
+
+            .hours-card h3 {
+                font-size: 18px;
+            }
+
+            .option-image {
+                height: 100px;
+            }
+        }
+
+       
+        .quick-access {
+            background: rgba(255,255,255,0.1);                          /* Quick Access Badge */
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -484,31 +980,111 @@
                 <span>unab</span>
             </div>
         </div>
+
+       
+        <nav class="nav-menu" id="navMenu" style="display: none;">
+            <a href="#inicio">Inicio</a>
+            <a href="#eventos">Eventos</a>                                       <!-- Navigation Menu -->
+            <a href="#actividades">Actividades</a>
+            <a href="#horarios">Horarios</a>
+        </nav>
+
         <div class="header-right">
-            <button class="perfil-btn">Perfil</button>
-            <div class="user-icon">👤</div>
+            
+            <div class="search-container" id="searchContainer" style="display: none;">                           <!-- Search Bar -->
+                <input type="text" class="search-input" placeholder="Buscar eventos, actividades...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+          
+            <div class="notification-bell" id="notificationBell" onclick="toggleNotifications()" style="display: none;">        <!-- Notification Bell -->
+                🔔
+                <span class="notification-badge">3</span>
+            </div>
+
+            
+            <div class="notification-dropdown" id="notificationDropdown">                           <!-- Notification Dropdown -->
+                <div class="notification-header">
+                    Notificaciones
+                </div>
+                <div class="notification-list">
+                    <div class="notification-item unread">
+                        <div class="notification-item-title">Nuevo evento disponible</div>
+                        <div class="notification-item-text">Conferencia de Tecnología - 2 HL disponibles</div>
+                        <div class="notification-item-time">Hace 5 minutos</div>
+                    </div>
+                    <div class="notification-item unread">
+                        <div class="notification-item-title">Recordatorio</div>
+                        <div class="notification-item-text">Te faltan 20 horas para completar tu requisito</div>
+                        <div class="notification-item-time">Hace 1 hora</div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-item-title">Horas aprobadas</div>
+                        <div class="notification-item-text">Tus 5 HL del voluntariado han sido aprobadas</div>
+                        <div class="notification-item-time">Hace 2 horas</div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-item-title">Nueva actividad</div>
+                        <div class="notification-item-text">Club de Lectura - Inscripciones abiertas</div>
+                        <div class="notification-item-time">Ayer</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="quick-access" id="quickAccess" style="display: none;">                       <!-- Quick Access (only when logged in) -->
+                ⚡ Acceso rápido
+            </div>
+
+                                                                                
+            <div class="user-menu">
+                <div class="user-button" onclick="toggleUserMenu()">    
+                    <span class="user-name-display" id="userNameDisplay">Juan Pérez</span>         <!-- User Menu -->
+                    <div class="user-icon">👤</div>
+                </div>
+
+                
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-dropdown-item" onclick="viewProfile()">
+                        👤 Mi Perfil
+                    </div>
+                    <div class="user-dropdown-item" onclick="viewSettings()">
+                        ⚙️ Configuración                                                <!-- Menu usuario -->
+                    </div>
+                    <div class="user-dropdown-item" onclick="viewHelp()">
+                        ❓ Ayuda
+                    </div>
+                    <div class="user-dropdown-item" onclick="logout()">
+                        🚪 Cerrar Sesión
+                    </div>
+                </div>
+            </div>
+
         </div>
     </header>
 
     <div class="container">
         <div class="left-section">
-            <h1>Hola, Bienvenido</h1>
+            <h1 id="mainTitle">Hola, Bienvenido</h1>
             <div class="placeholder-lines">
                 <div class="placeholder-line"></div>
                 <div class="placeholder-line"></div>
             </div>
 
-            <div class="auth-section">
+            <div class="auth-section" id="authSection">
                 <div class="tabs">
-                    <button class="tab active" onclick="switchTab('login')">Iniciar Sesión</button>
-                    <button class="tab" onclick="switchTab('register')">Registrarse</button>
+                    <button class="tab active" onclick="switchTab(event, 'login')">Iniciar Sesión</button>
+                    <button class="tab" onclick="switchTab(event, 'register')">Registrarse</button>
                 </div>
 
                 <div id="login" class="tab-content active">
-            
+                    <div class="profile-placeholder">
+                        <div class="avatar-placeholder"></div>
+                        <div class="profile-text"></div>
+                    </div>
                     <div class="input-group">
                         <label>ID de estudiante</label>
-                        <input type="text" placeholder="Ingresa tu ID">
+                        <input type="text" id="loginId" placeholder="Ingresa tu ID">
                     </div>
                     <div class="input-group">
                         <label>Contraseña</label>
@@ -523,7 +1099,7 @@
                 <div id="register" class="tab-content">
                     <div class="input-group">
                         <label>Nombre completo</label>
-                        <input type="text" placeholder="Ingresa tu nombre completo">
+                        <input type="text" id="registerName" placeholder="Ingresa tu nombre completo">
                     </div>
                     <div class="input-group">
                         <label>ID de estudiante</label>
@@ -546,11 +1122,17 @@
             </div>
         </div>
 
+        <div class="welcome-message" id="welcomeMessage">
+            <div class="welcome-icon">🎓</div>
+            <h2>Bienvenido a UNAB</h2>
+            <p>Inicia sesión o regístrate para acceder a tu información de horas libres, eventos y actividades disponibles.</p>
+        </div>
+
         <div class="right-section hidden" id="userContent">
             <div class="progress-card">
-                <h4>Progreso de horas libres</h4>
-                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">Horas Libres obtenidas</span></div>
-                <p class="progress-text">Te faltan <strong>20 horas libres</strong></p>
+                <h4>HL progreso</h4>
+                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">HL obtenidas</span></div>
+                <p class="progress-text">me faltan <strong>20</strong></p>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
@@ -575,12 +1157,6 @@
                 <a href="#" class="ver-lugares">Ver lugares disponibles</a>
             </div>
         </div>
-
-        <div class="welcome-message" id="welcomeMessage">
-            <div class="welcome-icon">🎓</div>
-            <h2>Bienvenido a UNAB</h2>
-            <p>Inicia sesión o regístrate para acceder a tu información de horas libres, eventos y actividades disponibles.</p>
-        </div>
     </div>
 
     <footer>
@@ -595,37 +1171,117 @@
     <script>
         let isLoggedIn = false;
 
-        function switchTab(tabName) {
-            const contents = document.querySelectorAll('.tab-content');           //ocultar contenido
-            contents.forEach(content => {
+        function switchTab(event, tabName) {
+            
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {                                          // Ocultar todos los contenidos
                 content.classList.remove('active');
             });
 
-        
-            const tabs = document.querySelectorAll('.tab');                      //desactivar todas las pestañas
+            
+            const tabs = document.querySelectorAll('.tab');                        // Desactivar todas las pestañas
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
 
-            document.getElementById(tabName).classList.add('active');            // activar la pestaña seleccionada
+            
+            document.getElementById(tabName).classList.add('active');                // Activar la pestaña seleccionada
             event.target.classList.add('active');
         }
 
         function login() {
-            isLoggedIn = true;                                                  //Simular login
+            isLoggedIn = true;
             
-            document.getElementById('welcomeMessage').style.display = 'none';   //ocultar mensaje de bienvenida UNAB
             
-
-            const userContent = document.getElementById('userContent');         //mostrar el contenido del usuario
+            document.getElementById('welcomeMessage').style.display = 'none';                  // Ocultar mensaje de bienvenida y auth section
+            document.getElementById('authSection').style.display = 'none';
+            
+           
+            const userContent = document.getElementById('userContent');                     // Mostrar contenido del usuario
             userContent.classList.remove('hidden');
             
-            userContent.style.opacity = '0';                                     
+            
+            const userName = document.getElementById('loginId').value || 'Juan Pérez'; 
+            document.getElementById('mainTitle').textContent = `Hola, ${userName}`;
+            document.getElementById('userNameDisplay').textContent = userName;                      // Actualizar header
+            document.getElementById('userNameDisplay').classList.add('active');
+            
+           
+            document.getElementById('navMenu').style.display = 'flex';
+            document.getElementById('searchContainer').style.display = 'block';                     // Mostrar elementos del header
+            document.getElementById('notificationBell').style.display = 'block';
+            document.getElementById('quickAccess').style.display = 'block';
+            
+            
+            userContent.style.opacity = '0';
             setTimeout(() => {
-                userContent.style.transition = 'opacity 0.5s';
+                userContent.style.transition = 'opacity 0.5s';                        // Animación de entrada
                 userContent.style.opacity = '1';
             }, 10);
         }
+
+        function logout() {
+            isLoggedIn = false;
+            
+            
+            document.getElementById('authSection').style.display = 'block';                                       // Mostrar autenticacion section y welcome message
+            document.getElementById('welcomeMessage').style.display = 'block';
+            
+            
+            document.getElementById('userContent').classList.add('hidden');                                      // Ocultar contenido del usuario
+             
+            
+            document.getElementById('mainTitle').textContent = 'Hola, Bienvenido';                            // Resetear header
+            document.getElementById('userNameDisplay').classList.remove('active');
+            
+            
+            document.getElementById('navMenu').style.display = 'none';
+            document.getElementById('searchContainer').style.display = 'none';
+            document.getElementById('notificationBell').style.display = 'none';                              // Ocultar elementos del header
+            document.getElementById('quickAccess').style.display = 'none';
+            
+            
+            document.getElementById('userDropdown').classList.remove('active');                             // Cerrar dropdowns
+            document.getElementById('notificationDropdown').classList.remove('active');
+        }
+
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationDropdown');
+            dropdown.classList.toggle('active');
+            
+            document.getElementById('userDropdown').classList.remove('active');                      // Cerrar user dropdown si está abierto
+        }
+
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('active');
+            
+            
+            document.getElementById('notificationDropdown').classList.remove('active');                  // Cerrar notifications dropdown si está abierto
+        }
+
+        function viewProfile() {
+            alert('Ver perfil - Funcionalidad en desarrollo');
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+
+        function viewSettings() {
+            alert('Configuración - Funcionalidad en desarrollo');
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+
+        function viewHelp() {
+            alert('Ayuda - Funcionalidad en desarrollo');
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.notification-bell') && !event.target.closest('.notification-dropdown')) {
+                document.getElementById('notificationDropdown').classList.remove('active');
+            }                                                                                                         // Cerrar cuando de click afuera
+            if (!event.target.closest('.user-menu')) {
+                document.getElementById('userDropdown').classList.remove('active');
+            }
+        });
     </script>
-</body>
-</html>
