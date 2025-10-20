@@ -49,7 +49,6 @@
         }
 
         .logo {
-            background: #f9a825;
             padding: 8px;
             border-radius: 8px;
             display: flex;
@@ -979,11 +978,7 @@
     <header>
         <div class="logo-container">
             <div class="logo">
-                <div class="logo-icon"></div>
-            </div>
-            <div class="logo-text">
-                <span>Universidad</span>
-                <span>unab</span>
+                <div><img src="logo_unab.png" alt="Logo UNAB" style="height: 60px; width: 200px;"></div>
             </div>
         </div>
 
@@ -1124,8 +1119,8 @@
 
         <div class="right-section hidden" id="userContent">
             <div class="progress-card">
-                <h4>Progreso de horas libres</h4>
-                <div class="progress-number">80 <span style="font-size: 24px; font-weight: 600;">horas libres logradas</span></div>
+                <h4>Horas libres progreso</h4>
+                <div class="progress-number">100 <span style="font-size: 24px; font-weight: 600;">Horas obtenidas</span></div>
                 <p class="progress-text">te faltan <strong>20</strong></p>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
@@ -1204,20 +1199,16 @@
             document.getElementById('navMenu').style.display = 'flex';
             document.getElementById('notificationBell').style.display = 'block';                     // Mostrar elementos del header
             
-            // --- INICIO CORRECCIÓN 1: Contenido recortado ---
             const searchContainer = document.getElementById('searchContainer');
             searchContainer.style.display = 'block';
 
-            // Si estamos en móvil, ajustamos el padding del contenido
             if (window.innerWidth <= 768) {
-                // Leemos la altura real de la barra de búsqueda
+               
                 const searchBarHeight = searchContainer.offsetHeight; 
-                // Sumamos esa altura a los 20px de padding que ya tenía el .container
+                
                 document.querySelector('.container').style.paddingTop = (searchBarHeight + 20) + 'px';
             }
-            // --- FIN CORRECCIÓN 1 ---
 
-            
             userContent.style.opacity = '0';
             setTimeout(() => {
                 userContent.style.transition = 'opacity 0.5s';                        // Animación de entrada
@@ -1243,12 +1234,10 @@
             document.getElementById('navMenu').style.display = 'none';
             document.getElementById('notificationBell').style.display = 'none';                              // Ocultar elementos del header
             
-            // --- INICIO CORRECCIÓN 1 (Reset): Contenido recortado ---
             document.getElementById('searchContainer').style.display = 'none';
             
-            // Reseteamos el padding del container en móvil a su valor original
             if (window.innerWidth <= 768) {
-                document.querySelector('.container').style.paddingTop = '20px'; // 20px es el valor original en tu CSS
+                document.querySelector('.container').style.paddingTop = '20px'; 
             }
 
             
@@ -1264,8 +1253,6 @@
         }
 
         function toggleUserMenu() {
-            // --- INICIO CORRECCIÓN 2: Menú de usuario ---
-            // Si el usuario NO ha iniciado sesión, no hagas nada.
             if (!isLoggedIn) {
                 return;
             }
@@ -1305,4 +1292,3 @@
     </script>
     </body>
 </html>
-
