@@ -39,7 +39,7 @@
         }
 
         .logo-unab {
-            height: 50px;
+            height: 40px;
             width: auto;
             transition: transform 0.3s;
         }
@@ -50,7 +50,7 @@
 
         .logo {
             background: #f9a825;
-            padding: 12px;
+            padding: 8px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -63,8 +63,8 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             background: white;
             border-radius: 4px;
             position: relative;
@@ -100,7 +100,7 @@
         }
 
         .logo-text span:last-child {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
             color: #f9a825;
             line-height: 0.9;
@@ -156,9 +156,9 @@
             background: #f44336;
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -253,14 +253,14 @@
             padding: 10px 40px 10px 15px;
             border: none;
             border-radius: 25px;
-            width: 250px;
+            width: 200px;
             font-size: 14px;
             transition: width 0.3s;
         }
 
         .search-input:focus {
             outline: none;
-            width: 300px;
+            width: 240px;
         }
 
         .search-icon {
@@ -308,8 +308,9 @@
         .perfil-btn {
             background: white;
             color: #2b5a9e;
-            padding: 10px 30px;
+            padding: 6px 12px;
             border-radius: 25px;
+            font-size: 12px;
             font-weight: 600;
             border: none;
             cursor: pointer;
@@ -322,14 +323,14 @@
         }
 
         .user-icon {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 16px;
             color: #2b5a9e;
         }
 
@@ -759,8 +760,9 @@
         @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
-                position: sticky;
-                top: 0;
+                position: relative;
+                min-height: auto;
+                flex-wrap: nowrap;
             }
 
             .logo-unab {
@@ -791,7 +793,7 @@
             }
 
             .header-right {
-                gap: 10px;
+                gap: 8px;
             }
 
             .search-container {
@@ -802,7 +804,8 @@
                 padding: 15px 20px;
                 background: white;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                z-index: 1000;
+                display: none !important
+                
             }
 
             .search-input {
@@ -825,7 +828,8 @@
             }
 
             .notification-bell {
-                font-size: 20px;
+                font-size: 18px;
+                padding: 4px;
             }
 
             .notification-dropdown {
@@ -916,7 +920,7 @@
             }
 
             .quick-access {
-                display: none;
+                display: none !important
             }
         }
 
@@ -1246,7 +1250,6 @@
             if (window.innerWidth <= 768) {
                 document.querySelector('.container').style.paddingTop = '20px'; // 20px es el valor original en tu CSS
             }
-            // --- FIN CORRECCIÓN 1 (Reset) ---
 
             
             document.getElementById('userDropdown').classList.remove('active');                             // Cerrar dropdowns
@@ -1266,7 +1269,7 @@
             if (!isLoggedIn) {
                 return;
             }
-            // --- FIN CORRECCIÓN 2 ---
+          
 
             const dropdown = document.getElementById('userDropdown');
             dropdown.classList.toggle('active');
