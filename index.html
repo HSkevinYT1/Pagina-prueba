@@ -984,27 +984,23 @@
        
         <nav class="nav-menu" id="navMenu" style="display: none;">
             <a href="#inicio">Inicio</a>
-            <a href="#eventos">Eventos</a>                                       <!-- Navigation Menu -->
-            <a href="#actividades">Actividades</a>
+            <a href="#eventos">Eventos</a>                                       <a href="#actividades">Actividades</a>
             <a href="#horarios">Horarios</a>
         </nav>
 
         <div class="header-right">
             
-            <div class="search-container" id="searchContainer" style="display: none;">                           <!-- Search Bar -->
-                <input type="text" class="search-input" placeholder="Buscar eventos, actividades...">
+            <div class="search-container" id="searchContainer" style="display: none;">                           <input type="text" class="search-input" placeholder="Buscar eventos, actividades...">
                 <span class="search-icon">🔍</span>
             </div>
 
           
-            <div class="notification-bell" id="notificationBell" onclick="toggleNotifications()" style="display: none;">        <!-- Notification Bell -->
-                🔔
-                <span class="notification-badge">3</span>
+            <div class="notification-bell" id="notificationBell" onclick="toggleNotifications()" style="display: none;">        🔔
+                <span class="notification-badge">2</span>
             </div>
 
             
-            <div class="notification-dropdown" id="notificationDropdown">                           <!-- Notification Dropdown -->
-                <div class="notification-header">
+            <div class="notification-dropdown" id="notificationDropdown">                           <div class="notification-header">
                     Notificaciones
                 </div>
                 <div class="notification-list">
@@ -1037,8 +1033,7 @@
                                                                                 
             <div class="user-menu">
                 <div class="user-button" onclick="toggleUserMenu()">    
-                    <span class="user-name-display" id="userNameDisplay">Kevin Bayona</span>         <!-- User Menu -->
-                    <div class="user-icon">👤</div>
+                    <span class="user-name-display" id="userNameDisplay">Kevin Bayona</span>         <div class="user-icon">👤</div>
                 </div>
 
                 
@@ -1047,8 +1042,7 @@
                         👤 Mi Perfil
                     </div>
                     <div class="user-dropdown-item" onclick="viewSettings()">
-                        ⚙️ Configuración                                                <!-- Menu usuario -->
-                    </div>
+                        ⚙️ Configuración                                                </div>
                     <div class="user-dropdown-item" onclick="viewHelp()">
                         ❓ Ayuda
                     </div>
@@ -1202,10 +1196,21 @@
             
            
             document.getElementById('navMenu').style.display = 'flex';
-            document.getElementById('searchContainer').style.display = 'block';                     // Mostrar elementos del header
-            document.getElementById('notificationBell').style.display = 'block';
+            document.getElementById('notificationBell').style.display = 'block';                     // Mostrar elementos del header
             
-            
+            // --- INICIO CORRECCIÓN 1: Contenido recortado ---
+            const searchContainer = document.getElementById('searchContainer');
+            searchContainer.style.display = 'block';
+
+            // Si estamos en móvil, ajustamos el padding del contenido
+            if (window.innerWidth <= 768) {
+                // Leemos la altura real de la barra de búsqueda
+                const searchBarHeight = searchContainer.offsetHeight; 
+                // Sumamos esa altura a los 20px de padding que ya tenía el .container
+                document.querySelector('.container').style.paddingTop = (searchBarHeight + 20) + 'px';
+            }
+            // --- FIN CORRECCIÓN 1 ---
+
             
             userContent.style.opacity = '0';
             setTimeout(() => {
@@ -1230,9 +1235,17 @@
             
             
             document.getElementById('navMenu').style.display = 'none';
-            document.getElementById('searchContainer').style.display = 'none';
             document.getElementById('notificationBell').style.display = 'none';                              // Ocultar elementos del header
             
+            // --- INICIO CORRECCIÓN 1 (Reset): Contenido recortado ---
+            document.getElementById('searchContainer').style.display = 'none';
+            
+            // Reseteamos el padding del container en móvil a su valor original
+            if (window.innerWidth <= 768) {
+                document.querySelector('.container').style.paddingTop = '20px'; // 20px es el valor original en tu CSS
+            }
+            // --- FIN CORRECCIÓN 1 (Reset) ---
+
             
             document.getElementById('userDropdown').classList.remove('active');                             // Cerrar dropdowns
             document.getElementById('notificationDropdown').classList.remove('active');
@@ -1246,6 +1259,13 @@
         }
 
         function toggleUserMenu() {
+            // --- INICIO CORRECCIÓN 2: Menú de usuario ---
+            // Si el usuario NO ha iniciado sesión, no hagas nada.
+            if (!isLoggedIn) {
+                return;
+            }
+            // --- FIN CORRECCIÓN 2 ---
+
             const dropdown = document.getElementById('userDropdown');
             dropdown.classList.toggle('active');
             
@@ -1278,6 +1298,5 @@
             }
         });
     </script>
-
-
-
+    </body>
+</html>
